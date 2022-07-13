@@ -1,27 +1,44 @@
-# Getting Started with Create React App
+# Random User Table
 
-## Available Scripts
+## Overview
 
-### `npm start`
+Simple webpage to show random user data from [https://randomuser.me/](https://randomuser.me/) API using react js
+  
+## Requirement
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To get started, you need to install [wnlijoan check [here](https://nodejs.org/en/) 
+  
+## Instalation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Lets begin installing the packagandowd running the project on your local machine:
 
-### `npm test`
+1. Clone this repository: `git clone https://github.com/maulanaahmadarif/random-user-table.git`.
+
+2.  `cd random-user-table`
+
+3.  `npm install`
+
+4. Start the project `npm run start`
+
+5. It should running on your localhost with port `3000` `http://localhost:3000`
 
 
-### `npm run build`
+## How it works
 
+The initial load will fetch the data from [https://randomuser.me/](https://randomuser.me/) API with the these query params:
 
-### `npm run eject`
+| query | type | description |
+|--|--|--|
+| results | `Int` | How much data client needs from the server  |
+| page | `Int` | Current pagination page |
+| inc | `String` | Specify which fields to include |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Sometimes, you want some random names and not extraneous data such as location, phone, etc. Using the inc, you can specify which fields to include, in this case we are only need `gender,name,login,registered,email` to show to the table
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Each columns can be sorted except for username `desc` or `asc` by clicking the up and down arrow in each column header, this sorting is not fetch from the API because by developing this webpage, the sort is not supported yet in the API, instead we are manipulating the fetched data using simple [localCompare](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare) method
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The filter function includes with two parameter, `search by username` and `gender`. This filter implements simple [filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)  method to manipulate existing data, and for the input search by username its wrapped with debounce function using [loadash debounce](https://lodash.com/docs/4.17.15#debounce)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Deployment
+
+Github Action is implemented in this repository for merging and pull request, it then build and deploy to [firebase hosting](https://firebase.google.com/docs/hosting) with the production url: [https://random-user-table.web.app/](https://random-user-table.web.app/) 
