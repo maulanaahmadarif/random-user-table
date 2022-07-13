@@ -29,10 +29,12 @@ const UserTable = () => {
     })
 
     setUserData(searchQueryFiltered)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.gender, state.searchQuery])
 
   useEffect(() => {
     fetchData(pagination);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const columns = [
